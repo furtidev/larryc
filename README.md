@@ -10,10 +10,10 @@ Windows (native executable):
 - Create a new folder and put the **exe** into the folder.
 - Copy the path of the folder containing the executable.
 - Put the path into your environment PATH variable.
-- Now you can call larry through your terminal using `larryc`.
+- Now you can call larryc through your terminal using `larryc`.
 Cross-platform (Python must be installed):
 - Open up your terminal. And type in: `$ pip install larryc`.
-- Restart your terminal session and access larry through `larryc`.
+- Restart your terminal session and access larryc through `larryc`.
 
 ## Screenshot
 ![snapshot](static/snap.png)
