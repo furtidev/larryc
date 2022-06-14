@@ -6,10 +6,15 @@ Larryc is a dictionary-search engine that runs in your terminal with a pleasing 
 ## Purpose
 First of all, nobody these days carries dictionaries. Second of all, not everyone likes to use the browser for everything. Especially me. I feel like small things like this should be done in the terminal, which is fast and straight to point. Larryc is **maybe** going to solve the *dictionary* crysis. That's what I'm calling it. 
 
-## Installation
+## Installation & Usage
 Cross-platform (Python must be installed):
-- Open up your terminal. And type in: `$ pip install larryc`.
-- Restart your terminal session and access larryc through `larryc`.
+```bash
+# install the package
+pip install larryc
+
+# usage
+python -m larryc <word>
+```
 
 ## Screenshot
 ![snapshot](static/snap.png)
