@@ -1,5 +1,5 @@
 # Larry 
-g Larry is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written in [Rich framework](https://github.com/Textualize/rich).
+Larry is a dictionary-search engine that runs in your terminal with a pleasing UI. Larry is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written in [Rich framework](https://github.com/Textualize/rich).
 
 ## Purpose
 First of all, nobody these days carries dictionaries. Second of all, not everyone likes to use the browser for everything. Especially me. I feel like small things like this should be done in the terminal, which is fast and straight to point. Larry is **maybe** going to solve the *dictionary* crysis. That's what I'm calling it. 
