@@ -1,18 +1,12 @@
 # Larryc
 Larryc is a dictionary-search engine that runs in your terminal with a pleasing UI. Larryc is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written in [Rich framework](https://github.com/Textualize/rich).
-<br> <br> [![PyPi](https://img.shields.io/badge/PACKAGE-PYPI-blue?style=for-the-badge)](https://pypi.org/project/larryc/)
-![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)
+<br> <br> [![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
+![License](https://img.shields.io/github/license/furtidev/larryc?color=blue&style=for-the-badge)
 
 ## Purpose
 First of all, nobody these days carries dictionaries. Second of all, not everyone likes to use the browser for everything. Especially me. I feel like small things like this should be done in the terminal, which is fast and straight to point. Larryc is **maybe** going to solve the *dictionary* crysis. That's what I'm calling it. 
 
 ## Installation
-Windows (native executable):
-- Download the executable from the release tab. 
-- Create a new folder and put the **exe** into the folder.
-- Copy the path of the folder containing the executable.
-- Put the path into your environment PATH variable.
-- Now you can call larryc through your terminal using `larryc`.
 Cross-platform (Python must be installed):
 - Open up your terminal. And type in: `$ pip install larryc`.
 - Restart your terminal session and access larryc through `larryc`.
