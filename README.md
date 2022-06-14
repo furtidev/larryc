@@ -1,4 +1,4 @@
-# Larry c
+# Larryc
 Larryc is a dictionary-search engine that runs in your terminal with a pleasing UI. Larryc is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written in [Rich framework](https://github.com/Textualize/rich).
 
 ## Purpose
