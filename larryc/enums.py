@@ -1,5 +1,5 @@
 '''
-The command-line parser for the package.
+Classes deriving from enum.Enum
 ...
 
 Copyright 2022 furtidev
@@ -13,18 +13,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 # Imports.
-import sys
-import asyncio
-from larryc.app import *
+from enum import Enum
 
 
-# Initialize App object.
-obj = App()
-
-# Coroutine.
-async def main():
-	await obj.run(sys.argv[1]) if len(sys.argv) == 2 else obj.err(ErrorType.NO_ARG)
-
-
-# Run the coroutine.
-asyncio.run(main())
+# ErrorType enum.
+class ErrorType(Enum):
+	NO_ARG = 1
