@@ -1,6 +1,10 @@
+examples
+
+__pycache__
 build
 dist
-larry.egg-info
-__pycache__
-examples
+venv
+*.egg-info
+
 .DS_Store
+.python-version

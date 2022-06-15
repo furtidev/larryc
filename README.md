@@ -1,5 +1,5 @@
 # Larryc
-Larryc is a dictionary-search engine that runs in your terminal with a pleasing UI. Larryc is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written in [Rich framework](https://github.com/Textualize/rich).
+Larryc is an asynchronous dictionary-search engine that runs in your terminal with a pleasing UI. It is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written using the [Rich framework](https://github.com/Textualize/rich).
 <br> <br> [![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
 ![License](https://img.shields.io/github/license/furtidev/larryc?color=blue&style=for-the-badge)
 
