@@ -68,4 +68,4 @@ class App:
 
 	def err(self, type: ErrorType):
 		if type == ErrorType.NO_ARG:
-			self.console.print("[red]USAGE:[/red] [bold green]$ larry <word>[/bold green]")
+			self.console.print("[red]USAGE:[/red] [bold green]$ larryc <word>[/bold green]")
