@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.1'
+VERSION = '0.3'
 DESCRIPTION = 'Dictionary for your terminal'
 
 with open('README.md', 'r+') as ld:
