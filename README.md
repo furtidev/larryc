@@ -1,10 +1,16 @@
 # Larryc
-Larryc is an asynchronous dictionary-search engine that runs in your terminal with a pleasing UI. It is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written using the [Rich framework](https://github.com/Textualize/rich).
-<br> <br> [![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
+
+[![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
 ![License](https://img.shields.io/github/license/furtidev/larryc?color=blue&style=for-the-badge)
+
+Larryc is an asynchronous dictionary-search engine that runs in your terminal with a pleasing UI. It is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written using the [Rich framework](https://github.com/Textualize/rich).
+
+<br><br>
 
 ## Motivation
 First of all, nobody these days carries dictionaries. Second of all, not everyone likes to use the browser for everything. Especially me. I feel like small things like this should be done in the terminal, which is fast and straight to point. Larryc is **maybe** going to solve the *dictionary* crysis. That's what I'm calling it. 
+
+<br>
 
 ## Installation & Usage
 - Cross-platform (Python must be installed):
@@ -16,11 +22,29 @@ pip install larryc
 python -m larryc archeology # You can use any word in place of archeology here.
 ```
 
-## Example Snap
+<br>
+
+## Example
 ![snapshot](static/snap.png)
 
+<br>
+
 ## Contribution
-Contributing to Larryc is pretty straight-forward. You can either improve the UI or do some major changes. It's upto you. If the changes are good for the project, they will be accepted. Feel free to open a pull request. It's fine.
+Contributing to Larryc is pretty straight-forward. If you're up to creating some new features for the projects or make a massive change, here are the simple steps to follow:
+
+- [Fork]() the repository and clone it.
+- Do your stuff.
+- [Push]() your changes to the fork.
+- [Create a pull request]() and submit!
 
 ## License
-Larryc is under the MIT license.
+```
+Copyright 2022 furtidev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+[View Original](LICENSE)
