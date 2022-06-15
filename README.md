@@ -5,7 +5,7 @@
 
 Larryc is an asynchronous dictionary-search engine that runs in your terminal with a pleasing UI. It is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written using the [Rich framework](https://github.com/Textualize/rich).
 
-<br><br>
+<br>
 
 ## Motivation
 First of all, nobody these days carries dictionaries. Second of all, not everyone likes to use the browser for everything. Especially me. I feel like small things like this should be done in the terminal, which is fast and straight to point. Larryc is **maybe** going to solve the *dictionary* crysis. That's what I'm calling it. 
@@ -36,6 +36,8 @@ Contributing to Larryc is pretty straight-forward. If you're up to creating some
 - Do your stuff.
 - [Push]() your changes to the fork.
 - [Create a pull request]() and submit!
+
+<br>
 
 ## License
 ```
