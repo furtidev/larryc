@@ -15,6 +15,7 @@ setup(
     author="furtidev (Isfer Hossain)",
     author_email="<megaphone@poto.cafe>",
     description=DESCRIPTION,
+    url='https://github.com/furtidev/larryc',
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
