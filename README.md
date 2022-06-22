@@ -49,7 +49,7 @@ In order to set up the development environment for this library, consider [cloni
 pip install -r tests/requirements.txt
 ```
 
-Once they are installed in the project folder, you can easily run tests to make sure everything is working using [Pytest](https://pytest.org):
+Once they are installed in the project folder, you can easily run tests to make sure everything is working using the [Pytest](https://pytest.org) library:
 ```bash
 # The --verbose flag is used to show detailed output.
 python3 -m pytest --verbose
