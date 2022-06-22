@@ -1,6 +1,4 @@
 from setuptools import setup, find_packages
-import codecs
-import os
 
 VERSION = '0.3'
 DESCRIPTION = 'Dictionary for your terminal'
@@ -19,7 +17,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=['rich'],
+    install_requires=['rich', 'aiohttp'],
     keywords=['python', 'dictionary', 'cli', 'app', 'foss'],
     classifiers=[
         "Development Status :: 4 - Beta",

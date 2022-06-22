@@ -14,6 +14,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # Imports.
 import aiohttp
+from functools import cache
+from typing import Any, List
 
 from rich.align import Align
 from rich.console import Console
@@ -23,49 +25,73 @@ from larryc.enums import ErrorType
 
 # The App class for base operations.
 class App:
-	def __init__(self):
+	def __init__(self) -> None:
+		self.response = None
 		self.console = Console()
 		self.color = "green"
 
-	async def run(self, word: str):
-		session = aiohttp.ClientSession()
-
-		async with session.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}") as request:
-			response = await request.json()
-
-		await session.close()
-		synonyms = []
-		
+	async def call(self, word: str) -> None:
+		async with aiohttp.ClientSession() as session:
+			async with session.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}") as request:
+				self.response = await request.json()
+				return self.response
+				
+	def filter_definitions(self, sanitize: bool=True) -> List[str] | Any:
 		try:
-			synonyms = response[0]['meanings'][0]['synonyms']
+			definitions = self.response[0]['meanings'][0]['definitions']
 		except KeyError:
-			pass
+			return None
 
-		if "message" in response:
-			self.console.print(f"[red]ERROR:[/red] [green]{response['message']}[/green]")
+		if not sanitize:
+			return definitions
+
+		sanitized = []
+		for i in range(len(definitions)):
+			sanitized.append(definitions[i]['definition'])
+
+		return sanitized
+
+	def filter_meanings(self, key: str) -> Any | None:
+		try:
+			return self.response[0]['meanings'][0][key]
+		except KeyError:
+			return None
+
+	async def run(self, word: str) -> None:
+		await self.call(word)
+
+		definitions = self.filter_definitions()
+		synonyms = self.filter_meanings('synonyms')
+		antonyms = self.filter_meanings('antonyms')
+
+		if "message" in self.response:
+			self.console.print(f"[red]ERROR:[/red] [green]{self.response['message']}[/green]")
 
 		else:
 			self.console.rule(f"🔍 Viewing Word -> [green]{word.capitalize()}[/green]")
 			self.console.print(Align(":book: Definitions", align="center"))
 
-			for i in range(len(response[0]['meanings'][0]['definitions'])):
+			for item in definitions:
 				if self.color == "green":
 					self.color = "yellow"
- 
 				else:
 					self.color = "green"
 					
-				self.console.print(f"[{self.color}]• {response[0]['meanings'][0]['definitions'][i]['definition']}[/]", justify="center")
+				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
 			
 			if synonyms:
-				self.console.rule("Synoyms")
-				for i in synonyms:
-					self.console.print(f"[cyan]{i}[/]", justify="center")
-			
+				self.console.rule("Synonyms")
+				for item in synonyms:
+					self.console.print(f"[cyan]{item}[/]", justify="center")
+
+			if antonyms:
+				self.console.rule("Antonyms")
+				for item in antonyms:
+					self.console.print(f"[cyan]{item}[/]", justify="center")
 			
 			self.console.rule(f"Made with [b magenta not dim]Rich[/]", characters="~", style="magenta")
 			
 
-	def err(self, type: ErrorType):
+	def err(self, type: ErrorType) -> None:
 		if type == ErrorType.NO_ARG:
 			self.console.print("[red]USAGE:[/red] [bold green]$ larryc <word>[/bold green]")
