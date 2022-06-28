@@ -68,7 +68,7 @@ class App:
 	def __init__(self) -> None:
 		self.response = None
 		self.console = Console()
-		self.color = "green"
+		self.color = "yellow dim"
 
 	async def call(self, word: str) -> Word:
 		async with aiohttp.ClientSession() as session:
@@ -83,28 +83,34 @@ class App:
 			self.console.print(f"[red]ERROR:[/red] [green]{self.response['message']}[/green]")
 
 		else:
-			self.console.rule(f"🔍 Viewing Word -> [green]{word.capitalize()} ({word_obj.phonetic if word_obj.phonetic else 'no phonetic'})[/green]")
-			self.console.print(Align(":book: Definitions", align="center"))
+			self.console.line(2)
+			self.console.print(f'[green]{word.capitalize()}{("   " + word_obj.phonetic) if word_obj.phonetic else ""}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
+			self.console.line()
+			self.console.rule("[bold white]Definitions[/bold white]", align="center")
 
 			for item in word_obj.definitions:
-				if self.color == "green":
-					self.color = "yellow"
+				if self.color == "yellow":
+					self.color = "yellow dim"
 				else:
-					self.color = "green"
+					self.color = "yellow"
 					
 				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
 			
 			if word_obj.synonyms:
-				self.console.rule("Synonyms")
+				self.console.line()
+				self.console.rule("[bold white]Synonyms[/bold white]")
+
 				for item in word_obj.synonyms:
-					self.console.print(f"[cyan]{item}[/]", justify="center")
+					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 
 			if word_obj.antonyms:
-				self.console.rule("Antonyms")
+				self.console.line()
+				self.console.rule("[bold white]Antonyms[/bold white]")
+
 				for item in word_obj.antonyms:
-					self.console.print(f"[cyan]{item}[/]", justify="center")
+					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 			
-			self.console.rule(f"Made with [b magenta not dim]Rich[/]", characters="~", style="magenta")
+			self.console.line(2)
 			
 
 	def err(self, type: ErrorType) -> None:
