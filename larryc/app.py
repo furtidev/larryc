@@ -27,6 +27,9 @@ class Word:
 	def __init__(self, response: Any):
 		self.response = response
 
+	def __str__(self) -> str:
+		return self.response[0]['word']
+
 	@property
 	def phonetic(self) -> str | None:
 		try:
