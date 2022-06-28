@@ -29,6 +29,13 @@ class Word:
 		self.response = response
 
 	@property
+	def phonetic(self) -> str | None:
+		try:
+			return self.response[0]['phonetic']
+		except KeyError:
+			return None
+
+	@property
 	def definitions(self) -> List[str] | None:
 		try:
 			definitions = self.response[0]['meanings'][0]['definitions']
@@ -71,16 +78,16 @@ class App:
 				return Word(self.response)
 
 	async def run(self, word: str) -> None:
-		word = await self.call(word)
+		word_obj = await self.call(word)
 
 		if "message" in self.response:
 			self.console.print(f"[red]ERROR:[/red] [green]{self.response['message']}[/green]")
 
 		else:
-			self.console.rule(f"🔍 Viewing Word -> [green]{word.capitalize()}[/green]")
+			self.console.rule(f"🔍 Viewing Word -> [green]{word.capitalize()} ({word_obj.phonetic if word_obj.phonetic else 'no phonetic'})[/green]")
 			self.console.print(Align(":book: Definitions", align="center"))
 
-			for item in word.definitions:
+			for item in word_obj.definitions:
 				if self.color == "green":
 					self.color = "yellow"
 				else:
@@ -88,14 +95,14 @@ class App:
 					
 				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
 			
-			if word.synonyms:
+			if word_obj.synonyms:
 				self.console.rule("Synonyms")
-				for item in word.synonyms:
+				for item in word_obj.synonyms:
 					self.console.print(f"[cyan]{item}[/]", justify="center")
 
-			if word.antonyms:
+			if word_obj.antonyms:
 				self.console.rule("Antonyms")
-				for item in word.antonyms:
+				for item in word_obj.antonyms:
 					self.console.print(f"[cyan]{item}[/]", justify="center")
 			
 			self.console.rule(f"Made with [b magenta not dim]Rich[/]", characters="~", style="magenta")
