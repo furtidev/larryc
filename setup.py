@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.3'
+VERSION = '0.4'
 DESCRIPTION = 'Dictionary for your terminal'
 
 with open('README.md', 'r+') as ld:
@@ -8,7 +8,7 @@ with open('README.md', 'r+') as ld:
 
 # Setting up
 setup(
-    name="larry",
+    name="larryc",
     version=VERSION,
     author="furtidev (Isfer Hossain)",
     author_email="<megaphone@poto.cafe>",
