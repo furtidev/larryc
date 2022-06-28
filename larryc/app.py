@@ -2,7 +2,7 @@
 The command-line parser for the package.
 ...
 
-Copyright 2022 furtidev
+Copyright 2022 furtidev, HitBlast
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -14,13 +14,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # Imports.
 import aiohttp
-from functools import cache
 from typing import Any, List
+from dataclasses import dataclass
 
 from rich.align import Align
 from rich.console import Console
 
 from larryc.enums import ErrorType
+
+
+# The Word class for keeping track of an API response.
+class Word:
+	def __init__(self, response: Any):
+		self.response = response
+
+	@property
+	def definitions(self) -> List[str] | None:
+		try:
+			definitions = self.response[0]['meanings'][0]['definitions']
+		except KeyError:
+			return None
+
+		sanitized = []
+		for i in range(len(definitions)):
+			sanitized.append(definitions[i]['definition'])
+
+		return sanitized
+
+	@property
+	def synonyms(self) -> Any | None:
+		try:
+			return self.response[0]['meanings'][0]['synonyms']
+		except KeyError:
+			return None
+
+	@property
+	def antonyms(self) -> Any | None:
+		try:
+			return self.response[0]['meanings'][0]['antonyms']
+		except KeyError:
+			return None
+
 
 
 # The App class for base operations.
@@ -30,39 +64,14 @@ class App:
 		self.console = Console()
 		self.color = "green"
 
-	async def call(self, word: str) -> None:
+	async def call(self, word: str) -> Word:
 		async with aiohttp.ClientSession() as session:
 			async with session.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}") as request:
 				self.response = await request.json()
-				return self.response
-				
-	def filter_definitions(self, sanitize: bool=True) -> List[str] | Any:
-		try:
-			definitions = self.response[0]['meanings'][0]['definitions']
-		except KeyError:
-			return None
-
-		if not sanitize:
-			return definitions
-
-		sanitized = []
-		for i in range(len(definitions)):
-			sanitized.append(definitions[i]['definition'])
-
-		return sanitized
-
-	def filter_meanings(self, key: str) -> Any | None:
-		try:
-			return self.response[0]['meanings'][0][key]
-		except KeyError:
-			return None
+				return Word(self.response)
 
 	async def run(self, word: str) -> None:
-		await self.call(word)
-
-		definitions = self.filter_definitions()
-		synonyms = self.filter_meanings('synonyms')
-		antonyms = self.filter_meanings('antonyms')
+		word = await self.call(word)
 
 		if "message" in self.response:
 			self.console.print(f"[red]ERROR:[/red] [green]{self.response['message']}[/green]")
@@ -71,7 +80,7 @@ class App:
 			self.console.rule(f"🔍 Viewing Word -> [green]{word.capitalize()}[/green]")
 			self.console.print(Align(":book: Definitions", align="center"))
 
-			for item in definitions:
+			for item in word.definitions:
 				if self.color == "green":
 					self.color = "yellow"
 				else:
@@ -79,14 +88,14 @@ class App:
 					
 				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
 			
-			if synonyms:
+			if word.synonyms:
 				self.console.rule("Synonyms")
-				for item in synonyms:
+				for item in word.synonyms:
 					self.console.print(f"[cyan]{item}[/]", justify="center")
 
-			if antonyms:
+			if word.antonyms:
 				self.console.rule("Antonyms")
-				for item in antonyms:
+				for item in word.antonyms:
 					self.console.print(f"[cyan]{item}[/]", justify="center")
 			
 			self.console.rule(f"Made with [b magenta not dim]Rich[/]", characters="~", style="magenta")
