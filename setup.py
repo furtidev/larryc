@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.4'
+VERSION = '0.5'
 DESCRIPTION = 'Dictionary for your terminal'
 
 with open('README.md', 'r+') as ld:
