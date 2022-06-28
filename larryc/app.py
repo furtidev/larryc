@@ -15,7 +15,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 # Imports.
 import aiohttp
 from typing import Any, List
-from dataclasses import dataclass
 
 from rich.align import Align
 from rich.console import Console
