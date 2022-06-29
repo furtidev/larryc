@@ -3,6 +3,8 @@
 [![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
 ![License](https://img.shields.io/github/license/furtidev/larryc?color=blue&style=for-the-badge)
 
+![Snapshot](static/snap.png)
+
 Larryc is an asynchronous dictionary-search engine that runs in your terminal with a pleasing UI. It is depending on the [dictionary api](https://dictionaryapi.dev/). And, the UI is written using the [Rich framework](https://github.com/Textualize/rich).
 
 <br>
@@ -21,11 +23,6 @@ pip install larryc
 # Basic command-line usage.
 python -m larryc archeology # You can use any word in place of archeology here.
 ```
-
-<br>
-
-## Example
-![snapshot](static/snap.png)
 
 <br>
 
