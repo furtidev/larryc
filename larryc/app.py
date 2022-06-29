@@ -16,7 +16,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 import aiohttp
 from typing import Any, List
 
-from rich.align import Align
 from rich.console import Console
 
 from larryc.enums import ErrorType
