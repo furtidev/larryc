@@ -37,18 +37,13 @@ Contributing to Larryc is pretty straight-forward. If you're up to creating some
 <br>
 
 ## Developer Notes
-In order to set up the development environment for this library, consider [cloning the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and installing the dependencies for it first using the command below:
+In order to set up the development environment for this library, consider [cloning the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) and installing the dependencies for it first using the commands below. The tests for this project have been written to support [pytest](https://pytest.org).
 
 ```bash
-# The tests/requirements.txt text file contains 
-# the dependency names.
-
+# The tests/requirements.txt text file contains the dependency names.
 pip install -r tests/requirements.txt
-```
 
-Once they are installed in the project folder, you can easily run tests to make sure everything is working using the [Pytest](https://pytest.org) library:
-```bash
-# The --verbose flag is used to show detailed output.
+# Run the tests with the pytest command, --verbose flag to show detailed output.
 python3 -m pytest --verbose
 ```
 
