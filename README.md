@@ -1,7 +1,8 @@
 # Larryc
 
-[![Version](https://img.shields.io/pypi/v/larryc?color=blue&style=for-the-badge)](https://pypi.org/project/larryc/)
-![License](https://img.shields.io/github/license/furtidev/larryc?color=blue&style=for-the-badge)
+[![Downloads](https://static.pepy.tech/personalized-badge/larryc?period=total&units=none&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/larryc)
+[![Version](https://img.shields.io/pypi/v/larryc?color=blue)](https://pypi.org/project/larryc/)
+![License](https://img.shields.io/github/license/furtidev/larryc?color=blue)
 
 ![Snapshot](static/snap.png)
 
