@@ -24,8 +24,11 @@ app = App()
 # Let the testing begin!
 @pytest.mark.asyncio
 class TestLarryc:
-    async def test_response(self) -> None:
-        assert await app.call('archeology')
+    async def test_word(self) -> None:
+        expected = 'archeology'
+        word = await app.call(expected)
+
+        assert str(word) == expected
 
     async def test_synonyms(self) -> None:
         test_synonyms: Dict[str, List[str] | None] = {
@@ -56,10 +59,9 @@ class TestLarryc:
         }
 
         for key, value in test_synonyms.items():
-            await app.call(key)
-            synonyms = app.filter_meanings('synonyms')
+            word = await app.call(key)
 
-            assert value == synonyms
+            assert value == word.synonyms
 
     async def test_antonyms(self) -> None:
         test_antonyms: Dict[str, List[str] | None] = {
@@ -76,7 +78,6 @@ class TestLarryc:
         }
 
         for key, value in test_antonyms.items():
-            await app.call(key)
-            antonyms = app.filter_meanings('antonyms')
+            word = await app.call(key)
 
-            assert value == antonyms
+            assert value == word.antonyms
