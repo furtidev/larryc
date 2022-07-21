@@ -30,6 +30,7 @@ SOFTWARE.
 import aiohttp
 from typing import Any, List
 
+from rich.style import Style
 from rich.console import Console
 
 from larryc.enums import ErrorType
@@ -44,11 +45,21 @@ class Word:
 		return self.response[0]['word']
 
 	@property
-	def phonetic(self) -> str | None:
-		try:
-			return self.response[0]['phonetic']
-		except KeyError:
-			return None
+	def phonetics(self) -> List[str] | None:
+		data = self.response[0]
+		phonetic = []
+
+		if 'phonetics' in data:
+			data = self.response[0]['phonetics']
+
+			for item in data:
+				if 'text' in item:
+					phonetic.append(item['text'])
+
+		elif 'phonetic' in data:
+			phonetic.append(data['phonetic'])
+
+		return phonetic
 
 	@property
 	def definitions(self) -> List[str] | None:
@@ -100,28 +111,37 @@ class App:
 
 		else:
 			self.console.line(2)
-			self.console.print(f'[green]{word.capitalize()}{("   " + word_obj.phonetic) if word_obj.phonetic else ""}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
-			self.console.line()
-			self.console.rule("[bold white]Definitions[/bold white]", align="center")
+			self.console.print(f'[green]{word.capitalize()}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
 
-			for item in word_obj.definitions:
-				if self.color == "yellow":
-					self.color = "yellow dim"
-				else:
-					self.color = "yellow"
-					
-				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
+			if word_obj.definitions:
+				self.console.line()
+				self.console.rule("[bold white]Definitions[/bold white]")
+
+				for item in word_obj.definitions:
+					if self.color == "yellow":
+						self.color = "yellow dim"
+					else:
+						self.color = "yellow"
+						
+					self.console.print(f"[{self.color}]• {item}[/]", justify="center")
+
+			if word_obj.phonetics:
+				self.console.line()
+				self.console.rule("[bold white]Phonetics[/bold white]", style=None)
+
+				for item in word_obj.phonetics:
+					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 			
 			if word_obj.synonyms:
 				self.console.line()
-				self.console.rule("[bold white]Synonyms[/bold white]")
+				self.console.rule("[bold white]Synonyms[/bold white]", style=None)
 
 				for item in word_obj.synonyms:
 					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 
 			if word_obj.antonyms:
 				self.console.line()
-				self.console.rule("[bold white]Antonyms[/bold white]")
+				self.console.rule("[bold white]Antonyms[/bold white]", style=None)
 
 				for item in word_obj.antonyms:
 					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
