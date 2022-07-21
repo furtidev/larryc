@@ -44,7 +44,7 @@ class Word:
 		return self.response[0]['word']
 
 	@property
-	def phonetic(self) -> str | None:
+	def phonetics(self) -> str | List[str] | None:
 		try:
 			data = self.response[0]['phonetics']
 			phonetic = []
@@ -55,10 +55,10 @@ class Word:
 
 		except KeyError:
 			try:
-				phonetic = self.response[0]['phonetic']
+				phonetic = [self.response[0]['phonetic']]
 			except KeyError:
 				return None
-				
+
 		finally:
 			return phonetic
 
@@ -112,17 +112,26 @@ class App:
 
 		else:
 			self.console.line(2)
-			self.console.print(f'[green]{word.capitalize()}{("   " + word_obj.phonetic) if word_obj.phonetic else ""}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
-			self.console.line()
-			self.console.rule("[bold white]Definitions[/bold white]", align="center")
+			self.console.print(f'[green]{word.capitalize()}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
 
-			for item in word_obj.definitions:
-				if self.color == "yellow":
-					self.color = "yellow dim"
-				else:
-					self.color = "yellow"
-					
-				self.console.print(f"[{self.color}]• {item}[/]", justify="center")
+			if word_obj.definitions:
+				self.console.line()
+				self.console.rule("[bold white]Definitions[/bold white]")
+
+				for item in word_obj.definitions:
+					if self.color == "yellow":
+						self.color = "yellow dim"
+					else:
+						self.color = "yellow"
+						
+					self.console.print(f"[{self.color}]• {item}[/]", justify="center")
+
+			if word_obj.phonetics:
+				self.console.line()
+				self.console.rule("[bold white]Phonetics[/bold white]")
+
+				for item in word_obj.phonetics:
+					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 			
 			if word_obj.synonyms:
 				self.console.line()
