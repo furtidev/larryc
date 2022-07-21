@@ -30,6 +30,7 @@ SOFTWARE.
 import aiohttp
 from typing import Any, List
 
+from rich.style import Style
 from rich.console import Console
 
 from larryc.enums import ErrorType
@@ -126,21 +127,21 @@ class App:
 
 			if word_obj.phonetics:
 				self.console.line()
-				self.console.rule("[bold white]Phonetics[/bold white]")
+				self.console.rule("[bold white]Phonetics[/bold white]", style=None)
 
 				for item in word_obj.phonetics:
 					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 			
 			if word_obj.synonyms:
 				self.console.line()
-				self.console.rule("[bold white]Synonyms[/bold white]")
+				self.console.rule("[bold white]Synonyms[/bold white]", style=None)
 
 				for item in word_obj.synonyms:
 					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
 
 			if word_obj.antonyms:
 				self.console.line()
-				self.console.rule("[bold white]Antonyms[/bold white]")
+				self.console.rule("[bold white]Antonyms[/bold white]", style=None)
 
 				for item in word_obj.antonyms:
 					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
