@@ -29,6 +29,7 @@ SOFTWARE.
 # Imports.
 import sys
 import asyncio
+
 from larryc.app import *
 
 
@@ -41,4 +42,5 @@ async def main():
 
 
 # Run the coroutine.
-asyncio.run(main())
+if __name__ == '__main__':
+	asyncio.run(main())

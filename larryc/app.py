@@ -46,9 +46,21 @@ class Word:
 	@property
 	def phonetic(self) -> str | None:
 		try:
-			return self.response[0]['phonetic']
+			data = self.response[0]['phonetics']
+			phonetic = []
+
+			for item in data:
+				if 'text' in item:
+					phonetic.append(item['text'])
+
 		except KeyError:
-			return None
+			try:
+				phonetic = self.response[0]['phonetic']
+			except KeyError:
+				return None
+				
+		finally:
+			return phonetic
 
 	@property
 	def definitions(self) -> List[str] | None:
