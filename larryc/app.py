@@ -107,19 +107,21 @@ class App:
 		word_obj = await self.call(word)
 
 		if "message" in self.response:
-			self.console.print(f"[red]ERROR:[/red] [green]{self.response['message']}[/green]")
+			self.console.line()
+			self.console.print(f"[red reverse] ERROR [/] {self.response['message']}", justify="center")
+			self.console.line()
 
 		else:
 			self.console.line(2)
-			self.console.print(f'[green]{word.capitalize()}[/green]  |  Made with [bold purple]Rich[/bold purple]', justify='center')
+			self.console.print(f'[green]{word.capitalize()}[/]  |  Made with [bold purple]Rich[/]', justify="center")
 
 			if word_obj.definitions:
 				self.console.line()
-				self.console.rule("[bold white]Definitions[/bold white]")
+				self.console.rule("[bold white]Definitions[/]")
 
 				for item in word_obj.definitions:
 					if self.color == "yellow":
-						self.color = "yellow dim"
+						self.color += " dim"
 					else:
 						self.color = "yellow"
 						
@@ -127,28 +129,30 @@ class App:
 
 			if word_obj.phonetics:
 				self.console.line()
-				self.console.rule("[bold white]Phonetics[/bold white]", style=None)
+				self.console.rule("[bold white]Phonetics[/]", style=None)
 
 				for item in word_obj.phonetics:
-					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
+					self.console.print(f"[cyan]{item}[/]", justify="center")
 			
 			if word_obj.synonyms:
 				self.console.line()
-				self.console.rule("[bold white]Synonyms[/bold white]", style=None)
+				self.console.rule("[bold white]Synonyms[/]", style=None)
 
 				for item in word_obj.synonyms:
-					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
+					self.console.print(f"[cyan]{item}[/]", justify="center")
 
 			if word_obj.antonyms:
 				self.console.line()
-				self.console.rule("[bold white]Antonyms[/bold white]", style=None)
+				self.console.rule("[bold white]Antonyms[/]", style=None)
 
 				for item in word_obj.antonyms:
-					self.console.print(f"[cyan]{item}[/cyan]", justify="center")
+					self.console.print(f"[cyan]{item}[/]", justify="center")
 			
 			self.console.line(2)
 			
 
 	def err(self, type: ErrorType) -> None:
 		if type == ErrorType.NO_ARG:
-			self.console.print("[red]USAGE:[/red] [bold green]$ larryc <word>[/bold green]")
+			self.console.line()
+			self.console.print("[red reverse] USAGE [/] $ larryc [green]<word>[/]", justify="center")
+			self.console.line()
