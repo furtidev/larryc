@@ -1,2 +1,4 @@
 [flake8]
 max-line-length = 110
+per-file-ignores =
+    larryc/__main__.py:F403,F405
