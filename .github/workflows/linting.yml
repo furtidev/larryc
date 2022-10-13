@@ -1,0 +1,26 @@
+name: Linting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: flake8
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2

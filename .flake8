@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 110
+per-file-ignores =
+    larryc/__init__.py:F401,F403
+    larryc/__main__.py:F403,F405
+    tests/test_larryc.py:E402

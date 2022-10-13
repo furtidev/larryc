@@ -36,11 +36,12 @@ from larryc.app import *
 # Initialize App object.
 obj = App()
 
+
 # Coroutine.
 async def main():
-	await obj.run(sys.argv[1]) if len(sys.argv) == 2 else obj.err(ErrorType.NO_ARG)
+    await obj.run(sys.argv[1]) if len(sys.argv) == 2 else obj.err(ErrorType.NO_ARG)
 
 
 # Run the coroutine.
 if __name__ == '__main__':
-	asyncio.run(main())
+    asyncio.run(main())
